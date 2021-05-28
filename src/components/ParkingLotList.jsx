@@ -14,13 +14,14 @@ function ParkingLotList() {
         setLocation(e.target.value)
     }
     const searchHandler = async(e) => {
+        let secretKey = process.env.SECRET_KEY;
 const response = await axios
   .get(
     `/v3/businesses/search?categories=parking&location=${location}`,
     {
       headers: {
         "Authorization":
-          process.env.SECRET_KEY,
+          secretKey,
       },
     }
   )
