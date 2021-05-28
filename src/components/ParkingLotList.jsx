@@ -25,7 +25,10 @@ const response = await axios
       },
     }
   )
-  .then((res) => setSearchList(res.data.businesses && res.data.businesses.sort(function (a, b) {  //Here I'm doing the sort so the ones with the lowest score appear first
+  .then((res) => {
+    
+              console.log(res.data)
+              setSearchList(res.data.businesses && res.data.businesses.sort(function (a, b) {  //Here I'm doing the sort so the ones with the lowest score appear first
               let firstA = a.review_count * a.rating;
               let secondA = a.review_count + 1;
               let scoreA = firstA / secondA;
@@ -41,7 +44,8 @@ const response = await axios
                 return 1;
               }
               return 0;
-            })))
+            }))}
+            )
   .catch(err => console.log(err))
   ;
     }
