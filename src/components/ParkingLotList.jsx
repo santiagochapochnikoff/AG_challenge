@@ -15,18 +15,16 @@ function ParkingLotList() {
     }
     const searchHandler = async(e) => {
        
-const response = await axios
-  .get(
-    `https://api.yelp.com/v3/businesses/search?categories=parking&location=${location}`,
-    {
-      headers: {
-        Authorization:
-          "Bearer YQtEJ6fhOXwq2BZARHaZo9VZ0aB9jZBGeBUsszzeRgiQ68VCmin-G8SKRTn_jZU1h7IUEmzlfN7pxNVYVnWzXB3IkVb3pJTrNuzqeAA29k6eK3BwvjLAmmzyULOvYHYx",
-      },
-    }
-  )
+fetch(`/v3/businesses/search?categories=parking&location=${location}`, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer YQtEJ6fhOXwq2BZARHaZo9VZ0aB9jZBGeBUsszzeRgiQ68VCmin-G8SKRTn_jZU1h7IUEmzlfN7pxNVYVnWzXB3IkVb3pJTrNuzqeAA29k6eK3BwvjLAmmzyULOvYHYx",
+  },
+}).then(response => response.json())
   .then((res) => {
-    console.log(res.data);
+    console.log(res);
     setSearchList(
       res.data.businesses &&
         res.data.businesses.sort(function (a, b) {
@@ -49,7 +47,6 @@ const response = await axios
     );
   })
   .catch((err) => console.log(err));
-  ;
     }
 
  
