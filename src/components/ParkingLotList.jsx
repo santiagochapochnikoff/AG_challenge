@@ -22,8 +22,9 @@ fetch(`/v3/businesses/search?categories=parking&location=${location}`, {
     Authorization:
       "Bearer YQtEJ6fhOXwq2BZARHaZo9VZ0aB9jZBGeBUsszzeRgiQ68VCmin-G8SKRTn_jZU1h7IUEmzlfN7pxNVYVnWzXB3IkVb3pJTrNuzqeAA29k6eK3BwvjLAmmzyULOvYHYx",
   },
-}).then(response => response.json())
-  .then((res) => {
+})
+.then(response => response.json())
+.then((res) => {
     console.log(res);
     setSearchList(
       res.data.businesses &&
