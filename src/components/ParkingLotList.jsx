@@ -59,7 +59,7 @@ const response = await axios
         </div>
         
         <div className={styles.container}>
-            {searchList.map((p, i) => <ParkingLotCard
+            {searchList && searchList.map((p, i) => <ParkingLotCard
             name={p.name}
             address={p.location.address1}
             img={p.image_url}
