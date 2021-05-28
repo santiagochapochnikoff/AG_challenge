@@ -17,36 +17,38 @@ function ParkingLotList() {
        
 const response = await axios
   .get(
-    `/v3/businesses/search?categories=parking&location=${location}`,
+    `https://api.yelp.com/v3/businesses/search?categories=parking&location=${location}`,
     {
       headers: {
-        "Authorization":
-          "Bearer YQtEJ6fhOXwq2BZARHaZo9VZ0aB9jZBGeBUsszzeRgiQ68VCmin-G8SKRTn_jZU1h7IUEmzlfN7pxNVYVnWzXB3IkVb3pJTrNuzqeAA29k6eK3BwvjLAmmzyULOvYHYx"
+        Authorization:
+          "Bearer YQtEJ6fhOXwq2BZARHaZo9VZ0aB9jZBGeBUsszzeRgiQ68VCmin-G8SKRTn_jZU1h7IUEmzlfN7pxNVYVnWzXB3IkVb3pJTrNuzqeAA29k6eK3BwvjLAmmzyULOvYHYx",
       },
     }
   )
   .then((res) => {
-    
-              console.log(res.data)
-              setSearchList(res.data.businesses && res.data.businesses.sort(function (a, b) {  //Here I'm doing the sort so the ones with the lowest score appear first
-              let firstA = a.review_count * a.rating;
-              let secondA = a.review_count + 1;
-              let scoreA = firstA / secondA;
-              let firstB = b.review_count * b.rating;
-              let secondB = b.review_count + 1;
-              let scoreB = firstB / secondB;
-              
-              
-              if (scoreA < scoreB) {
-                return -1;
-              }
-              if (scoreA > scoreB) {
-                return 1;
-              }
-              return 0;
-            }))}
-            )
-  .catch(err => console.log(err))
+    console.log(res.data);
+    setSearchList(
+      res.data.businesses &&
+        res.data.businesses.sort(function (a, b) {
+          //Here I'm doing the sort so the ones with the lowest score appear first
+          let firstA = a.review_count * a.rating;
+          let secondA = a.review_count + 1;
+          let scoreA = firstA / secondA;
+          let firstB = b.review_count * b.rating;
+          let secondB = b.review_count + 1;
+          let scoreB = firstB / secondB;
+
+          if (scoreA < scoreB) {
+            return -1;
+          }
+          if (scoreA > scoreB) {
+            return 1;
+          }
+          return 0;
+        })
+    );
+  })
+  .catch((err) => console.log(err));
   ;
     }
 
