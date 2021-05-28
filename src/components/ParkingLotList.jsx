@@ -17,7 +17,7 @@ function ParkingLotList() {
        
 const response = await axios
   .get(
-    `https://api.yelp.com/v3/businesses/search?categories=parking&location=${location}`,
+    `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?categories=parking&location=${location}`,
     {
       headers: {
         Authorization:
